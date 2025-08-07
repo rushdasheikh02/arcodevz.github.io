@@ -1,129 +1,357 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-    
-    <title>Sssoon Page </title>
-    
-    <link href="css/bootstrap.css" rel="stylesheet" />
-	<link href="css/coming-sssoon.css" rel="stylesheet" />    
-    
-    <!--     Fonts     -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
-  
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcodevz</title>
 
-<body>
-<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">  
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Poppins:wght@300&display=swap" rel="stylesheet">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-         <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-                <img src="images/flags/US.png"/>
-                English(US) 
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><img src="images/flags/DE.png"/> Deutsch</a></li>
-                <li><a href="#"><img src="images/flags/GB.png"/> English(UK)</a></li>
-                <li><a href="#"><img src="images/flags/FR.png"/> Français</a></li>
-                <li><a href="#"><img src="images/flags/RO.png"/> Română</a></li>
-                <li><a href="#"><img src="images/flags/IT.png"/> Italiano</a></li>
-                
-                <li class="divider"></li>
-                <li><a href="#"><img src="images/flags/ES.png"/> Español <span class="label label-default">soon</span></a></li>
-                <li><a href="#"><img src="images/flags/BR.png"/> Português <span class="label label-default">soon</span></a></li>
-                <li><a href="#"><img src="images/flags/JP.png"/> 日本語 <span class="label label-default">soon</span></a></li>
-                <li><a href="#"><img src="images/flags/TR.png"/> Türkçe <span class="label label-default">soon</span></a></li>
-             
-              </ul>
-        </li>
+    <!-- Custom CSS -->
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #000005;
+            color: #f0f0f0;
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+        }
 
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="#"> 
-                    <i class="fa fa-facebook-square"></i>
-                    Share
-                </a>
-            </li>
-             <li>
-                <a href="#"> 
-                    <i class="fa fa-twitter"></i>
-                    Tweet
-                </a>
-            </li>
-             <li>
-                <a href="#"> 
-                    <i class="fa fa-envelope-o"></i>
-                    Email
-                </a>
-            </li>
-       </ul>
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
-</nav>
-<div class="main" style="background-image: url('images/default.jpg')">
+        /* The canvas for our generative art */
+        #art-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
 
-<!--    Change the image source '/images/default.jpg' with your favourite image.     -->
-    
-    <div class="cover black" data-color="black"></div>
-     
-<!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+        /* Content container, centered on top of the canvas */
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle, rgba(0, 0, 5, 0.3) 0%, rgba(0, 0, 5, 0.8) 70%);
+        }
 
-    <div class="container">
-        <h1 class="logo cursive">
-            Sssoon
-        </h1>
-<!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+        /* Main heading style */
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(180, 150, 255, 0.4);
+            animation: fadeInGlow 3s ease-in-out;
+        }
+
+        /* Description style */
+        .description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            color: rgba(255, 255, 255, 0.7);
+            animation: fadeIn 3.5s ease-in-out;
+        }
         
-        <div class="content">
-            <h4 class="motto">Find the best Bootstrap 3 freebies and themes on the web.</h4>
-            <div class="subscribe">
-                <h5 class="info-text">
-                    Join the waiting list for the beta. We keep you posted. 
-                </h5>
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
-                        <form class="form-inline" role="form">
-                          <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <input type="email" class="form-control transparent" placeholder="Your email here...">
-                          </div>
-                          <button type="submit" class="btn btn-danger btn-fill">Notify Me</button>
-                        </form>
+        /* Countdown timer styles */
+        #countdown {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 4s ease-in-out;
+        }
 
-                    </div>
-                </div>
+        .timer-box {
+            text-align: center;
+        }
+
+        .timer-box div {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .timer-box span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Notification form styles */
+        .notify-wrapper {
+            animation: fadeIn 4.5s ease-in-out;
+        }
+
+        .notify-form {
+            display: flex;
+            justify-content: center;
+            max-width: 450px;
+            margin: auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: border-color 0.4s ease;
+        }
+        
+        .notify-form:hover,
+        .notify-form:focus-within {
+             border-bottom-color: rgba(216, 191, 255, 0.8);
+        }
+
+        .email-input {
+            border: none;
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .notify-button {
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.8rem 1rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: color 0.4s ease;
+        }
+
+        .notify-button:hover {
+            color: #d8bfff; /* A light lavender */
+        }
+        
+        #message-box {
+            display: none;
+            margin-top: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInGlow {
+            from { opacity: 0; transform: translateY(15px); text-shadow: 0 0 5px rgba(180, 150, 255, 0.1); }
+            to { opacity: 1; transform: translateY(0); text-shadow: 0 0 20px rgba(180, 150, 255, 0.4); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .description { font-size: 1rem; }
+            #countdown { gap: 1.5rem; }
+            .timer-box div { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Generative Art Canvas -->
+    <canvas id="art-canvas"></canvas>
+
+    <!-- Content Overlay -->
+    <div class="content-overlay">
+        <h1>Arcodevz is Coming Soon</h1>
+<p class="description">We are building something exciting for you. Stay tuned and be the first to witness the future of digital innovation.</p>
+<p class="note">Meanwhile, visit us at <a href="https://rushdasheikh.wuaze.com/arcodevz" style="color: #00ffee;">#ARCODEVZ</a></p>
+        <div id="countdown">
+            <div class="timer-box">
+                <div id="days">00</div>
+                <span>Days</span>
+            </div>
+            <div class="timer-box">
+                <div id="hours">00</div>
+                <span>Hours</span>
+            </div>
+            <div class="timer-box">
+                <div id="minutes">00</div>
+                <span>Minutes</span>
+            </div>
+            <div class="timer-box">
+                <div id="seconds">00</div>
+                <span>Seconds</span>
             </div>
         </div>
+        
+        <div class="notify-wrapper">
+            <form id="notify-form" class="notify-form">
+                <input type="email" id="email-input" class="email-input" placeholder="Enter your email to be notified" required>
+                <button type="submit" class="notify-button">Submit</button>
+            </form>
+             <div id="message-box"></div>
+        </div>
     </div>
-    <div class="footer">
-      <div class="container">
-             Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>. Free download <a href="http://www.creative-tim.com/product/coming-sssoon-page">here.</a>
-      </div>
-    </div>
- </div>
- </body>
-   <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-   <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
+    <!-- Custom JavaScript -->
+    <script>
+        // --- GENERATIVE ART CANVAS ---
+        const canvas = document.getElementById('art-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const mouse = { x: null, y: null };
+
+        // Set canvas to full screen
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Listen for mouse movement
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        // Reset mouse position when it leaves the window
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Particle class definition
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.color = `hsl(${250 + Math.random() * 50}, 100%, ${70 + Math.random() * 20}%)`;
+            }
+
+            // Update particle position
+            update() {
+                // Interaction with mouse
+                if (mouse.x !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) { // Interaction radius
+                        // Move away from the cursor
+                        this.x -= dx / 20;
+                        this.y -= dy / 20;
+                    }
+                }
+                
+                // Add base velocity
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Handle screen boundaries
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+
+            // Draw particle on canvas
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Initialize particles
+        function initParticles() {
+            particles = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+        window.addEventListener('resize', initParticles);
+
+        // Animation loop
+        function animate() {
+            // Use a semi-transparent background to create a "trailing" effect
+            ctx.fillStyle = 'rgba(0, 0, 5, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+
+        // --- COUNTDOWN TIMER LOGIC ---
+        // !!! IMPORTANT: Set your launch date here !!!
+        const launchDate = new Date('2025-12-01T00:00:00').getTime();
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "<div style='font-family: Poppins, sans-serif; font-size: 1.5rem;'>Welcome.</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+
+        // --- NOTIFICATION FORM LOGIC ---
+        const notifyForm = document.getElementById('notify-form');
+        const messageBox = document.getElementById('message-box');
+        
+        notifyForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('email-input');
+            
+            if (emailInput.value && emailInput.checkValidity()) {
+                messageBox.textContent = 'Thank you. We will keep you in the loop.';
+                messageBox.style.color = '#a7c957'; // A gentle green
+                messageBox.style.display = 'block';
+                emailInput.value = '';
+            } else {
+                messageBox.textContent = 'Please provide a valid email address.';
+                messageBox.style.color = '#ff9b85'; // A soft red
+                messageBox.style.display = 'block';
+            }
+            
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
 </html>
